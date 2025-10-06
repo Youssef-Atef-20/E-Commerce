@@ -1,6 +1,8 @@
 import './App.css'
+
 import Navbar from './components/navbar'
 import ProductLayout from './components/ProductLayout'
+import Footer from './layout/footer'
 
 function App() {
 
@@ -21,6 +23,7 @@ function App() {
     return (
         <>
             <ProductLayout products={products} limitPerPage={9}/>
+            <Navbar />
         </>
     )
 }
