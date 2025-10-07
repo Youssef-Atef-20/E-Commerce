@@ -22,8 +22,8 @@ function App() {
 
     return (
         <>
-            <ProductLayout products={products} limitPerPage={9}/>
             <Navbar />
+            <ProductLayout products={products} limitPerPage={9}/>
         </>
     )
 }
