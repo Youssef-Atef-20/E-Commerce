@@ -1,5 +1,6 @@
-import { useState } from "react"
-import ProductCard from "./ProductCard"
+import { useState, useContext } from "react";
+import ProductCard from "./ProductCard";
+import { Data } from "../context/Data";
 
 export default function ProductLayout({ products, limitPerPage, wrap }) {
     const currentNumberOfPages = Math.ceil(products.length / limitPerPage);
