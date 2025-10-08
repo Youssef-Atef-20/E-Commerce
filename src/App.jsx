@@ -7,7 +7,6 @@ function App() {
 
     return (
         <BrowserRouter>
-            {/* <Navbar /> */}
             <Routes>
                 <Route path="/" element={<Homepage />} />
             </Routes>
@@ -16,4 +15,3 @@ function App() {
 }
 
 export default App
-//  <ProductLayout products={products} limitPerPage={9}/>
