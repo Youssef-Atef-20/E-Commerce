@@ -1,7 +1,7 @@
 import { useState } from "react"
 import ProductCard from "./ProductCard"
 
-export default function ProductLayout({ products, limitPerPage }) {
+export default function ProductLayout({ products, limitPerPage, wrap }) {
     const currentNumberOfPages = Math.ceil(products.length / limitPerPage);
     const [currentPage, setCurrentPage] = useState(1);
 
@@ -12,7 +12,7 @@ export default function ProductLayout({ products, limitPerPage }) {
 
     return (
         <div>
-            <div className="product-layout flex flex-wrap gap-4 p-4 justify-center">
+            <div className={"product-layout flex gap-4 p-4 justify-start " + (wrap ? 'flex-wrap' : 'overflow-x-auto')}>
                 {displayed.map(product => (
                     <ProductCard key={product.id} {...product} />
                 ))}
