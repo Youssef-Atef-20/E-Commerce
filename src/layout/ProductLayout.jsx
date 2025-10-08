@@ -1,34 +1,48 @@
-import { useState } from "react"
-import ProductCard from "./ProductCard"
+import { useState, useContext } from "react";
+import ProductCard from "./ProductCard";
+import { Data } from "../context/Data";
 
-export default function ProductLayout({ products, limitPerPage }) {
-    const currentNumberOfPages = Math.ceil(products.length / limitPerPage);
-    const [currentPage, setCurrentPage] = useState(1);
+export default function ProductLayout({ limitPerPage = 8 }) {
+  const products = useContext(Data) || []; 
+  const [currentPage, setCurrentPage] = useState(1);
 
-    const pages = Array.from({ length: currentNumberOfPages }, (_, i) => i + 1);
+  
+  if (products.length === 0) return <p>Loading...</p>;
 
-    const startIndex = (currentPage - 1) * limitPerPage;
-    const displayed = products.slice(startIndex, startIndex + limitPerPage);
+  const totalPages = Math.ceil(products.length / limitPerPage);
+  const pages = Array.from({ length: totalPages }, (_, i) => i + 1);
 
-    return (
-        <div>
-            <div className="product-layout flex flex-wrap gap-4 p-4 justify-center">
-                {displayed.map(product => (
-                    <ProductCard key={product.id} {...product} />
-                ))}
-            </div>
-            <div className="pagination flex gap-2 justify-center mt-4">
-                {pages.map((n) => (
-                    <button
-                        key={n}
-                        onClick={() => setCurrentPage(n)}
-                        className={`px-3 py-1 rounded cursor-pointer ${n === currentPage ? 'border-2' : 'bg-gray-200'}`}
-                        aria-current={n === currentPage}
-                    >
-                        {n}
-                    </button>
-                ))}
-            </div>
-        </div>
-    )
+  const startIndex = (currentPage - 1) * limitPerPage;
+  const displayed = products.slice(startIndex, startIndex + limitPerPage);
+
+  return (
+    <>
+      <div className="product-layout flex flex-wrap gap-4 p-4 justify-center">
+        {displayed.map(product => (
+          <ProductCard
+            key={product.id}
+            Id={product.id}
+            Name={product.title}
+            Price={product.price}
+            Image={product.image}
+            Category={product.category}
+          />
+        ))}
+      </div>
+
+      <div className="pagination flex gap-2 justify-center mt-4">
+        {pages.map(n => (
+          <button
+            key={n}
+            onClick={() => setCurrentPage(n)}
+            className={`px-3 py-1 rounded cursor-pointer ${
+              n === currentPage ? "border-2 border-black" : "bg-gray-200"
+            }`}
+          >
+            {n}
+          </button>
+        ))}
+      </div>
+    </>
+  );
 }
