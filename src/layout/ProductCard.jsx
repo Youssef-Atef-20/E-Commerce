@@ -1,40 +1,69 @@
-const ProductCard = ({ Name, Image, Price, Id }) => {
-    
-    function handleFavorite() {
-        console.log("Favorite clicked for product:", Id);
+import { useNavigate } from "react-router-dom";
+
+const ProductCard = ({ id, title, image, price }) => {
+    const navigate = useNavigate();
+
+    function handleFavorite(e) {
+        e.stopPropagation();
+        console.log("Favorite clicked for product:", id);
     }
 
-    function handleEye() {
-        console.log("Eye clicked for product:", Id);
+    function handleEye(e) {
+        e.stopPropagation();
+        console.log("Eye clicked for product:", id);
     }
 
     function GoToProductPage() {
-        console.log("Navigating to product page for product:", Id);
+        console.log("Navigating to product page for product:", id);
+        navigate(`/product/${id}`);
     }
-    
+
     return (
-        <div className='flex flex-col cursor-pointer w-[200px] items-start text-left' onClick={GoToProductPage}>
-            <div className='w-[200px] h-[200px] relative flex justify-center align-middle'>
-                <img className='w-5/6 justify-center object-contain' src={Image} alt={Name} />
-                <div className='absolute top-2 right-2 p-1 flex flex-col gap-2'>
-                    <button className='bg-white rounded-full cursor-pointer' onClick={handleFavorite}>❤️</button>
-                    <button className='bg-white rounded-full cursor-pointer' onClick={handleEye}>👁️</button>
-                </div>
-            </div>
-            <div className='flex flex-col font-semibold'>
-                <p>{Name}</p>
-                <div className="flex gap-2">
-                    <p className="text-red-600">{Price}$</p>
-                    {/* {oldPrice && oldPrice > Price ? <p className='line-through opacity-50'>{oldPrice}$</p> : null} */}
-                </div>
+        <div
+            onClick={GoToProductPage}
+            className="
+                flex flex-col cursor-pointer
+                w-[160px] sm:w-[180px] md:w-[200px] lg:w-[220px]
+                items-start text-left
+                p-3 border rounded-lg hover:shadow-lg transition bg-white
+                mx-auto sm:mx-0
+            "
+        >
+        <div
+            className="
+            relative flex justify-center items-center overflow-hidden rounded-md
+            w-full
+            h-[160px] sm:h-[180px] md:h-[200px] lg:h-[220px]
+            "
+        >
+            <img
+                className="object-contain w-full h-full transition-transform duration-300 hover:scale-105"
+                src={image}
+                alt={title}
+            />
+
+            <div className="absolute top-0 right-0 p-1 flex flex-col gap-2">
+                <button
+                    className="bg-white rounded-full shadow-sm p-1"
+                    onClick={handleFavorite}
+                >
+                    ❤️
+                    </button>
+                <button
+                    className="bg-white rounded-full shadow-sm p-1"
+                    onClick={handleEye}
+                >
+                    👁️
+                </button>
             </div>
         </div>
-    )
-}
 
-export default ProductCard
+        <div className="flex flex-col font-semibold mt-2 w-full">
+            <p className="truncate" title={title}>{title}</p>
+            <p className="text-red-600">{price}$</p>
+        </div>
+    </div>
+    );
+};
 
-
-
-
-// { name, img = "https://placehold.co/200x200", price, oldPrice, id }
+export default ProductCard;

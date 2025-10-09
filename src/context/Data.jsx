@@ -1,4 +1,4 @@
-// context/Data.js
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 
-export const Data = createContext([]); // بدل ما تعمل undefined خلي []
+export const Data = createContext([]);
+export const useData = () => useContext(Data);

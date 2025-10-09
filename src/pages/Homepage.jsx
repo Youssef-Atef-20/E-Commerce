@@ -1,11 +1,5 @@
-import React from 'react'
+import DataFetch from "./DataFetch";
 
-const Homepage = () => {
-    return (
-        <div>
-            Homepage
-        </div>
-    )
+export default function HomePage() {
+    return <DataFetch />;
 }
-
-export default Homepage

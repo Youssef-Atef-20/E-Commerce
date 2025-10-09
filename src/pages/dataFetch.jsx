@@ -1,3 +1,4 @@
+
 import { Data } from '../context/Data'
 import { useEffect, useState } from 'react'
 import ProductLayout from '../layout/ProductLayout'
@@ -17,11 +18,9 @@ const DataFetch = () => {
 
     return (
         <>
-        
-       <Data.Provider value={products}>
-        <ProductLayout/>
-       </Data.Provider>
-        
+            <Data.Provider value={products}>
+                <ProductLayout/>
+            </Data.Provider>
         </>
     )
 }
