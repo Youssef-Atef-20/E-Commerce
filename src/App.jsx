@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import SignUp from "./pages/SignUp";
 import WhishList from "./pages/WhishList";
 import ProductDetails from "./pages/ProductDetails";
+import DataFetch from "./pages/DataFetch";
 
 
 
@@ -19,7 +20,8 @@ function App() {
        
         
          <Routes>
-            <Route path="/" element={<HomePage />} />
+            <Route path="/" element={<DataFetch />} />
+            <Route path="/home" element={<HomePage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
