@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./layout/Navbar";
-import DataFetch from "./pages/DataFetch";
+import HomePage from "./pages/HomePage";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
@@ -19,7 +19,7 @@ function App() {
        
         
          <Routes>
-            <Route path="/" element={<DataFetch />} />
+            <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
