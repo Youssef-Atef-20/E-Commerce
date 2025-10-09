@@ -35,7 +35,7 @@ function ProductDetails() {
             className="w-[250px] h-[250px] object-contain"
         />
         <h1 className="text-2xl font-bold mt-4">{product.title}</h1>
-        <p className="text-red-500 text-lg mt-2">${product.price}</p>
+        <p className="text-red-500 text-lg mt-2">{product.price}$</p>
         <p className="mt-4 max-w-[600px]">{product.description}</p>
 
         <Link
