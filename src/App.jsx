@@ -8,11 +8,17 @@ import SignUp from "./pages/SignUp";
 import WhishList from "./pages/WhishList";
 import ProductDetails from "./pages/ProductDetails";
 
+
+
+
+
 function App() {
     return (
     <>
         <Navbar />
-        <Routes>
+       
+        
+         <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
@@ -21,6 +27,9 @@ function App() {
             <Route path="/wishlist" element={<WhishList />} />
             <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
+        
+    
+       
     </>
     );
 }
