@@ -4,13 +4,13 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
       <div>
-        <Link to="/" className="text-2xl font-bold">
+        <p className="text-2xl font-bold">
           Exclusive
-        </Link>
+        </p>
       </div>
 
       <ul className="md:flex space-x-8 text-gray-700 font-medium">
-        <li><Link to="/home" className="hover:text-black">Home</Link></li>
+        <li><Link to="/" className="hover:text-black">Home</Link></li>
         <li><Link to="/contact" className="hover:text-black">Contact</Link></li>
         <li><Link to="/about" className="hover:text-black">About</Link></li>
         <li><Link to="/signup" className="hover:text-black">Sign Up</Link></li>

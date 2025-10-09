@@ -13,15 +13,17 @@ import DataFetch from "./pages/DataFetch";
 
 
 
+
 function App() {
     return (
     <>
         <Navbar />
        
-        
-         <Routes>
-            <Route path="/E-Commerce/" element={<DataFetch />} />
-            <Route path="/home" element={<HomePage />} />
+         
+           
+           
+           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
@@ -29,6 +31,10 @@ function App() {
             <Route path="/wishlist" element={<WhishList />} />
             <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
+           
+        
+        
+         
         
     
        
