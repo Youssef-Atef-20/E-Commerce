@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./layout/Navbar";
-// import HomePage from "./pages/Homepage"; 
-import DataFetch from './pages/DataFetch'
+import DataFetch from "./pages/DataFetch";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Cart from "./pages/Cart";
