@@ -20,7 +20,7 @@ function App() {
        
         
          <Routes>
-            <Route path="/" element={<DataFetch />} />
+            <Route path="/E-Commerce/" element={<DataFetch />} />
             <Route path="/home" element={<HomePage />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/about" element={<About />} />
