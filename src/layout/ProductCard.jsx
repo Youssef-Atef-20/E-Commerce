@@ -60,7 +60,7 @@ const ProductCard = ({ id, title, image, price }) => {
 
         <div className="flex flex-col font-semibold mt-2 w-full">
             <p className="truncate" title={title}>{title}</p>
-            <p className="text-red-600">{price}$</p>
+            <p className="text-red-600 align">{price}$</p>
         </div>
     </div>
     );
