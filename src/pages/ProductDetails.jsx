@@ -10,6 +10,12 @@ function ProductDetails() {
     const [product, setProduct] = useState(null);
     const [quantity, setQuantity] = useState(1);
 
+
+
+  
+    
+
+
     useEffect(() => {
         const found = products.find((p) => p.id === Number(id));
         if (found) {
@@ -35,6 +41,7 @@ function ProductDetails() {
     const handleAddToCart = (e) => {
         if (quantity <= 0 || !product) return;
         dispatch(addProduct({ product, quantity }));
+
         setQuantity(0);
         e.preventDefault();
         alert(`${product.title} has been added to your cart Successfully ✅`)
@@ -54,7 +61,7 @@ function ProductDetails() {
                 <div className="mt-6 flex items-center gap-3">
                     <button
                         aria-label="Decrease quantity"
-                        onClick={() => setQuantity((q) => Math.max(0, q - 1))}
+                        onClick={() => setQuantity((q) => Math.max(1, q - 1))}
                         className="px-3 py-1 bg-gray-200 rounded hover:bg-gray-300"
                     >
                         -
