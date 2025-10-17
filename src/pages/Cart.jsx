@@ -155,6 +155,11 @@ const Cart = () => {
                     <input type="email" id="email" placeholder="example@gmail.com  (Optional)" className="border px-3 py-2 rounded"/>
 
 
+                    <label htmlFor="creditCard">Credit Card:</label>
+                    <input type="number" id="creditCard" placeholder="Enter Your Credit Card Number" className="border px-3 py-2 rounded" required/>
+
+
+
                     <label htmlFor="country">Country:</label>
                     <input type="text" id="country" placeholder="Egypt" className="border px-3 py-2 rounded"/>
 
