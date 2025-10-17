@@ -167,7 +167,7 @@ const Cart = () => {
 
 
 
-                    <button type="submit" className="bg-green-500 rounded px-3 py-2 hover:bg-green-600">Submit</button>
+                    <button type="submit" className="bg-green-500 rounded px-3 py-2 hover:bg-green-600 text-white">Submit</button>
 
 
                   </form>

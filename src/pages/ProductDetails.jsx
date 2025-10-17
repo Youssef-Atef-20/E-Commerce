@@ -42,7 +42,7 @@ function ProductDetails() {
         if (quantity <= 0 || !product) return;
         dispatch(addProduct({ product, quantity }));
 
-        setQuantity(0);
+        setQuantity(1);
         e.preventDefault();
         alert(`${product.title} has been added to your cart Successfully ✅`)
     };
