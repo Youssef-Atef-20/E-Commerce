@@ -7,6 +7,7 @@ import Cart from "./pages/Cart";
 import SignUp from "./pages/SignUp";
 import WhishList from "./pages/WhishList";
 import ProductDetails from "./pages/ProductDetails";
+import Login from "./pages/LogIn";
 
 
 
@@ -25,6 +26,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<Login />} />
             <Route path="/wishlist" element={<WhishList />} />
             <Route path="/product/:id" element={<ProductDetails />} />
         </Routes>
