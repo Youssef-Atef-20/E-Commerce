@@ -80,7 +80,7 @@ function Signup() {
           alt="E-commerce illustration with shopping cart"
           className="w-full h-full object-cover"
           onError={(e) => {
-            e.currentTarget.src = "https://placehold.co/800x800/EBF8FF/63B3ED?text=Your+Image+Goes+Here+(in+public+folder)";
+            e.currentTarget.src = "/./src/assets/phone-picture.webp";
             e.currentTarget.alt = "Placeholder for e-commerce image";
           }}
         />
