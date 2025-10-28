@@ -22,7 +22,7 @@ const Login = () => {
       <img 
         src={phonePicture}
         alt="Picture of Login" 
-        className="w-180 sm:h-64  md:h-80 lg:h-96 xl:h-[500px] object-cover "
+       className="hidden sm:block w-180 sm:h-64 md:h-80 lg:h-96 xl:h-[500px] object-cover"
       />
 
 
