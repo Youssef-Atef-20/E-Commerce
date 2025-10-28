@@ -4,7 +4,7 @@ import phonePicture from "../assets/phone-picture.webp";
 import googleLogo from "../assets/google_logo.webp";
 
 const Login = () => {
-  const isAuth = localStorage.getItem("isAuth") 
+  const isAuth = localStorage.getItem("isAuth") === "true"
   const navigate = useNavigate();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -13,7 +13,6 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    isAuth ? navigate("/homepage") : navigate("/signup")
   };
 
   return (
