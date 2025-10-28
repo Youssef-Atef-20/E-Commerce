@@ -4,8 +4,7 @@ import phonePicture from "../assets/phone-picture.webp";
 import googleLogo from "../assets/google_logo.webp";
 
 const Login = () => {
-  const isAuth = localStorage.getItem("isAuth") === "true"
-  const navigate = useNavigate();
+  const isAuth = localStorage.getItem("isAuth") === "true";
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -13,6 +12,9 @@ const Login = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!isAuth){
+        alert("You are Not Signned up Before, Please go to Sign up Page")
+    }
   };
 
   return (
@@ -60,7 +62,7 @@ const Login = () => {
             <img src={googleLogo} alt="Logo of Google" className="w-5 m-2 md-hidden"/>
             Log in with Google
           </button>
-                <p>Didn't have Accounr yet <Link to="/signup" className="text-blue-500 underline">Sign Up</Link></p>
+                <p>Didn't have Account yet <Link to="/signup" className="text-blue-500 underline">Sign Up</Link></p>
       </form>
 
     </div>
