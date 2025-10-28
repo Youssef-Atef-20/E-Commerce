@@ -8,6 +8,7 @@ import SignUp from "./pages/SignUp";
 import WhishList from "./pages/WhishList";
 import ProductDetails from "./pages/ProductDetails";
 import Login from "./pages/LogIn";
+import Protected from "./components/protected";
 
 
 
@@ -19,6 +20,7 @@ function App() {
     return (
     <>
         <Navbar />
+      
         
            <Routes>
             <Route path="/" element={<HomePage />} />
@@ -42,3 +44,17 @@ function App() {
 }
 
 export default App;
+// Ecommerce/
+// ├── public/                     # Contains static files like index.html and images
+// ├── src/                        # Main source folder for all app logic and UI
+// │   ├── assets/                 # Images, icons, and other static resources
+// │   ├── context/                # Context or data files shared across components
+// │   ├── layout/                 # Reusable UI components like Navbar, Footer, Product layout
+// │   ├── pages/                  # Page-level components (Home, Cart, Login, etc.)
+// │   ├── store/                  # Redux store setup and slices for state management
+// │   ├── App.css / App.jsx       # Main app styling and root component
+// │   ├── index.css               # Global styles
+// │   └── main.jsx                # Entry point of the React application
+// ├── eslint.config.js            # Linting configuration
+// └── index.html                  # Main HTML template
+
