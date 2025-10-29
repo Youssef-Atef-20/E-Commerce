@@ -4,8 +4,8 @@ const Navbar = () => {
   return (
     <nav className="flex items-center justify-between px-6 py-4 border-b border-gray-200 bg-white">
       <div>
-        <p className="text-2xl font-bold">
-          Exclusive
+        <p className="text-4xl font-bold bg-gradient-to-r from-yellow-400 via-red-500 to-orange-500 bg-clip-text text-transparent drop-shadow-[0_2px_1px_rgba(220,100,0,0.7)] hover:drop-shadow-[0_4px_4px_rgba(0,0,0,0.5)] transition-all duration-300">
+          <Link to="/" className="">Hot Deals</Link>
         </p>
       </div>
 
