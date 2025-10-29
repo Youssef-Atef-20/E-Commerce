@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import googleLogo from "../assets/google_logo.webp";
+import { useNavigate ,Link } from "react-router-dom";
 import phonePicture from "../assets/phone-picture.webp";
+import googleLogo from "../assets/google_logo.webp";
+
+    
 
 function Signup() {
   const [name, setName] = useState("");
@@ -10,10 +12,12 @@ function Signup() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [showError, setShowError] = useState(false);
   const [showEmailError, setShowEmailError] = useState(false);
-  const navigate = useNavigate();
-
+  
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    const storedEmail = localStorage.getItem("email");
+
     if (email === storedEmail) {
       setShowEmailError(true);
       
@@ -37,7 +41,7 @@ function Signup() {
     localStorage.setItem("email", email);
     localStorage.setItem("password", password);
     
-    navigate("/");
+    window.location.href = "/";
   };
 
   return (
@@ -125,9 +129,9 @@ function Signup() {
           </form>
           <p className="text-center text-gray-600 mt-8">
             Already have account?{" "}
-            <Link to="/login" className="text-red-500 font-medium hover:underline">
+            <a href="/login" className="text-red-500 font-medium hover:underline">
               Log in
-            </Link>
+            </a>
           </p>
         </div>
       </div>
@@ -136,3 +140,5 @@ function Signup() {
 }
 
 export default Signup;
+
+
