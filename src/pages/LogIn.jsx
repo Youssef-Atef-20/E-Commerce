@@ -102,7 +102,7 @@ const Login = () => {
               className="w-full flex items-center justify-center gap-2 border border-gray-300 rounded-md p-3 hover:bg-gray-50 transition"
             >
               <img src={googleLogo} className="w-5 h-5" alt="Google" />
-              <span className="text-gray-700 font-medium">Sign in with Google</span>
+              <span className="text-gray-700 font-medium">Log in with Google</span>
             </button>
           </form>
 
