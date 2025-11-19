@@ -12,7 +12,7 @@ import { Order, TOrderProduct } from "../models/Order";
 export async function AddProduct(req: Request<{}, {}, TAddProductBody>, res: Response) {
     try {
         const { name, price, description, stock } = req.body;
-        let imgUrl = await processImgUrl(req) || " ";
+        let imgUrl = await processImgUrl(req);
 
         const product = await Product.create({
             name,
@@ -32,7 +32,7 @@ export async function AddProduct(req: Request<{}, {}, TAddProductBody>, res: Res
 export async function EditProduct(req: Request<{}, {}, TEditProductBody>, res: Response) {
     try {
         const { productId, name, price, description, stock } = req.body;
-        let imgUrl = await processImgUrl(req) || "";
+        let imgUrl = await processImgUrl(req);
 
         const updateData: any = { name, price, description, stock };
         if (imgUrl != " ") updateData.img = imgUrl;
@@ -213,23 +213,27 @@ export async function stripeWebhookHandler(req: Request, res: Response) {
 
                     if (result.modifiedCount === 0) {
                         await mongooseSession.abortTransaction();
+
                         await stripe.refunds.create({
                             payment_intent: session.payment_intent as string
                         });
 
-                        await Order.findOneAndUpdate({ sessionId: session.id }, { status: "canceled" })
+                        console.log(`Insufficient stock for product ID: ${productId}. Refund initiated.`);
+                        
+                        await Order.findOneAndUpdate({ sessionId: session.id }, { status: "canceled" , message : `Order canceled due to insufficient stock for product ID: ${productId}`})
 
                         return res.json({ received: true })
                     }
                 }
                 
                 await mongooseSession.commitTransaction();
-                await Order.findOneAndUpdate({ sessionId: session.id }, { status: "completed" })
+                await Order.findOneAndUpdate({ sessionId: session.id }, { status: "completed" , message : "Order completed successfully"})
+
                 break;
             }
             case "checkout.session.expired":{
                 const session: Stripe.Checkout.Session = event.data.object;
-                await Order.findOneAndUpdate({ sessionId: session.id , status : "pending"}, { status: "canceled" })
+                await Order.findOneAndUpdate({ sessionId: session.id , status : "pending"}, { status: "canceled" , message : "Order Expired before payment" })
                 break;
             }
         }

@@ -52,6 +52,10 @@ const orderSchema = new Schema({
     sessionId:{
         type: String,
         required: true
+    },
+    message : {
+        type : String,
+        default : "Order Pending Payment"
     }
 }, { timestamps: true });
 

@@ -133,22 +133,26 @@ function returnUser(res: Response, user: TUser) {
 
 async function createUser(obj: { username: string, password: string, email: string, googleSub?: string }) {
     try {
-        const { username, password, email, googleSub } = obj
-        const user = await User.create({ email, username, password, googleSub: googleSub ? googleSub : null })
+        const { username, password, email, googleSub } = obj;
+
+        const data: any = { email, username, password };
+        if (googleSub) data.googleSub = googleSub;
+
+        const user = await User.create(data);
 
         const stripeCustomer = await stripe.customers.create({
             email,
             metadata: {
                 userId: user._id.toString()
             }
-        })
+        });
 
-        user.stripeCustomerId = stripeCustomer.id
-        await user.save()
+        user.stripeCustomerId = stripeCustomer.id;
+        await user.save();
 
-        return user
+        return user;
     } catch (e) {
-        console.log("Error creating user : ", e)
-        return null
+        console.log("Error creating user : ", e);
+        return null;
     }
 }

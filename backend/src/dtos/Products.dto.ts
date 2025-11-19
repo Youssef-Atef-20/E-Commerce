@@ -8,10 +8,10 @@ const ProductInCart = z.object({
 const Cart = z.object({ cart: z.array(ProductInCart).min(1) })
 
 const AddProductBody = z.object({
-    name: z.string().min(1),
-    description: z.string().min(1),
-    price: z.string().transform(Number).refine((val) => val >= 0),
-    stock: z.string().transform(Number).refine((val) => val > 0)
+    name: z.string().trim().min(1),
+    description: z.string().trim().min(1),
+    price: z.string().transform(Number).refine((val) => val >= 1 && val <= 10000),
+    stock: z.string().transform(Number).refine((val) => val >= 0)
 })
 
 const EditProductBody = AddProductBody.extend({ productId: z.string() })
