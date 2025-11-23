@@ -5,10 +5,12 @@ import axios from "axios";
 //     baseURL: env.BACKEND_URL + "/api",
 //     withCredentials : true
 // });
+// Local 
 
 export const api = axios.create({
     baseURL: "/api",
     withCredentials : true
 });
+// Production 
 
 export default api

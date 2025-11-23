@@ -12,6 +12,9 @@ const ProfileTab = ({ user }: { user: any }) => {
                 <p className="text-gray-700">
                     <span className="font-medium">Email:</span> {user.email}
                 </p>
+                <p className="text-gray-700">
+                    <span className="font-medium">Loyalty Points:</span> {user.loyaltyPoints}
+                </p>
             </div>
 
             <button
