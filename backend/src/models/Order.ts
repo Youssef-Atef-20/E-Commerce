@@ -56,6 +56,10 @@ const orderSchema = new Schema({
     message : {
         type : String,
         default : "Order Pending Payment"
+    },
+    usedPoints : {
+        type : Number , 
+        default : 0
     }
 }, { timestamps: true });
 

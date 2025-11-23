@@ -1,8 +1,8 @@
 import type { Request, Response } from "express";
-import { TAddProductBody, TCart, TDeleteProductBody, TEditProductBody } from "../dtos/Products.dto";
+import { TAddProductBody, TCart, TCartAndPoints, TDeleteProductBody, TEditProductBody } from "../dtos/Products.dto";
 import { Product } from "../models/Product";
 import Stripe from "stripe";
-import { TUser } from "../models/User";
+import { TUser, User } from "../models/User";
 import stripe from "../lib/Stripe";
 import { env } from "../env";
 import mongoose, { isObjectIdOrHexString } from "mongoose";
@@ -69,7 +69,7 @@ export async function DeleteProduct(req: Request<{}, {}, TDeleteProductBody>, re
     }
 }
 
-export async function CustomerCheckout(req: Request<{}, {}, TCart>, res: Response) {
+export async function CustomerCheckout(req: Request<{}, {}, TCartAndPoints>, res: Response) {
     const user = req.user as TUser
     const errors: { message: string, productId: string }[] = []
     const ok: TCart = { cart: [] }
@@ -132,7 +132,10 @@ export async function CustomerCheckout(req: Request<{}, {}, TCart>, res: Respons
             }
         })
 
+        // if he requested for an ammount less than what he got that will be nominated against the actuall full price
+        // if he requested for an ammount more than what he got that will be EXTERMINATED and instead will most likely use all his points or the orders need , the minimum of them
 
+        const USED_POINTS = Math.max(Math.min(req.body.points, user.loyaltyPoints, total * 10), 0)
 
         // dont redirect the user , let them know about the errors first
         if (errors.length) {
@@ -149,23 +152,36 @@ export async function CustomerCheckout(req: Request<{}, {}, TCart>, res: Respons
             return res.status(400).json({ ok, errors })
         }
 
-        const session = await stripe.checkout.sessions.create({
+        const sessionData: Stripe.Checkout.SessionCreateParams = {
             line_items: filteredCartData,
             mode: "payment",
             success_url: `${env.FRONTEND}`,
             cancel_url: `${env.FRONTEND}`,
             customer: user.stripeCustomerId as string,
             metadata: {
-                userId: user._id.toString()
-            },
-        })
+                userId: user._id.toString(),
+                points: USED_POINTS
+            }
+        }
+
+        if (USED_POINTS) {
+            const coupon = await stripe.coupons.create({
+                amount_off: USED_POINTS * 10,
+                currency: "usd",
+                max_redemptions: 1,
+            })
+            sessionData.discounts = [{ coupon: coupon.id }]
+        }
+
+        const session = await stripe.checkout.sessions.create(sessionData)
 
         const order = await Order.create({
             userId: user._id,
             payUrl: session.url,
             products: productsForOrder,
             totalPrice: total,
-            sessionId: session.id
+            sessionId: session.id,
+            usedPoints: USED_POINTS
         })
 
         return res.json({ url: session.url })
@@ -193,10 +209,29 @@ export async function stripeWebhookHandler(req: Request, res: Response) {
         switch (eventType) {
             case "checkout.session.completed": {
                 const session: Stripe.Checkout.Session = event.data.object;
-                if(!await Order.findOne({sessionId : session.id , status : "pending"})){
+                const user = await User.findById(session.metadata?.userId)
+                const points = Number(session?.metadata?.points)
+
+                if (!await Order.findOne({ sessionId: session.id, status: "pending" })) {
                     // we already proccessed duplicate stripe signal
                     return res.json({ received: true })
                 }
+                // something wrong happened there is no userId attached with the session
+                if (!user) {
+                    await stripe.refunds.create({
+                        payment_intent: session.payment_intent as string
+                    });
+                    return res.json({ received: true })
+                } else {
+                    if (user.loyaltyPoints && points && user.loyaltyPoints < points) {
+                        await stripe.refunds.create({
+                            payment_intent: session.payment_intent as string
+                        });
+                        await Order.findOneAndUpdate({ sessionId: session.id }, { status: "canceled", message: `Order canceled due to insufficient loyalty points for user` })
+                        return res.json({ received: true })
+                    }
+                }
+
                 const lineItems = await stripe.checkout.sessions.listLineItems(session.id, { expand: ['data.price.product'] });
 
                 mongooseSession.startTransaction()
@@ -219,21 +254,24 @@ export async function stripeWebhookHandler(req: Request, res: Response) {
                         });
 
                         console.log(`Insufficient stock for product ID: ${productId}. Refund initiated.`);
-                        
-                        await Order.findOneAndUpdate({ sessionId: session.id }, { status: "canceled" , message : `Order canceled due to insufficient stock for product ID: ${productId}`})
+
+                        await Order.findOneAndUpdate({ sessionId: session.id }, { status: "canceled", message: `Order canceled due to insufficient stock for product ID: ${productId}` })
 
                         return res.json({ received: true })
                     }
                 }
-                
-                await mongooseSession.commitTransaction();
-                await Order.findOneAndUpdate({ sessionId: session.id }, { status: "completed" , message : "Order completed successfully"})
 
+                await mongooseSession.commitTransaction();
+
+                if (points) user.loyaltyPoints -= points
+                user.loyaltyPoints += session.amount_total! / 100
+                await user.save()
+                await Order.findOneAndUpdate({ sessionId: session.id }, { status: "completed", message: "Order completed successfully" })
                 break;
             }
-            case "checkout.session.expired":{
+            case "checkout.session.expired": {
                 const session: Stripe.Checkout.Session = event.data.object;
-                await Order.findOneAndUpdate({ sessionId: session.id , status : "pending"}, { status: "canceled" , message : "Order Expired before payment" })
+                await Order.findOneAndUpdate({ sessionId: session.id, status: "pending" }, { status: "canceled", message: "Order Expired before payment" })
                 break;
             }
         }
@@ -278,7 +316,7 @@ async function processImgUrl(req: Request) {
     }
 }
 
-export async function getOrders(req : Request , res : Response){
+export async function getOrders(req: Request, res: Response) {
     const orders = await Order.find({ userId: req.user!._id });
     return res.json(orders);
 }

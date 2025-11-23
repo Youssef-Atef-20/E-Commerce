@@ -7,6 +7,8 @@ const ProductInCart = z.object({
 
 const Cart = z.object({ cart: z.array(ProductInCart).min(1) })
 
+const CartAndPoints = Cart.extend({ points: z.number().min(0) })
+
 const AddProductBody = z.object({
     name: z.string().trim().min(1),
     description: z.string().trim().min(1),
@@ -21,8 +23,8 @@ type TCart = z.infer<typeof Cart>
 type TAddProductBody = z.infer<typeof AddProductBody>
 type TEditProductBody = z.infer<typeof EditProductBody>
 type TDeleteProductBody = z.infer<typeof DeleteProductBody>
-
-export type { TAddProductBody, TEditProductBody, TDeleteProductBody, TCart }
+type TCartAndPoints = z.infer<typeof CartAndPoints>
+export type { TAddProductBody, TEditProductBody, TDeleteProductBody, TCart, TCartAndPoints }
 export { AddProductBody, EditProductBody, DeleteProductBody }
 
 export { Cart }
