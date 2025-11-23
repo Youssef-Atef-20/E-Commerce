@@ -1,16 +1,8 @@
 import axios from "axios";
-// import env from "./env";
-
-// export const api = axios.create({
-//     baseURL: env.BACKEND_URL + "/api",
-//     withCredentials : true
-// });
-// Local 
 
 export const api = axios.create({
-    baseURL: "/api",
-    withCredentials : true
+    baseURL: `${import.meta.env.VITE_BACKEND_URL}/api`,
+    withCredentials: true,
 });
-// Production 
 
-export default api
+export default api;
