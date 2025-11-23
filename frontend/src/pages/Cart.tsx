@@ -39,7 +39,11 @@ export const Cart = () => {
         if (loading) return;
         setLoading(true);
 
-        api.post("/products/checkout", { cart: cleanCart })
+        api.post("/products/checkout", {
+            cart: cleanCart, 
+            oldPrice: total,
+            newPrice: discountInfo?.newPrice ?? total, 
+            discount: discountInfo?.discount ?? 0 })
             .then(x => {
                 dispatch(clearCart());
                 location.href = x.data.url;
