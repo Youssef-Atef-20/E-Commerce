@@ -3,6 +3,7 @@ import { useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { ProductCard } from "../components/ProductCard";
 import AddProductCard from "../components/admin/AddProductCard";
+import banner from "../assets/banner1.webp";
 
 const ITEMS_PER_PAGE = 8;
 
@@ -28,15 +29,23 @@ const Home = () => {
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-6">
-            <h2 className="text-2xl font-semibold mb-6">Featured Products</h2>
+
+            {/* Banner Image */}
+            <div className="w-full mb-6">
+                <img 
+                    src={banner} 
+                    alt="Banner" 
+                    className="w-full h-auto rounded-lg shadow-md object-cover"
+                />
+            </div>
+
+            {/* <h2 className="text-2xl font-semibold mb-6">Featured Products</h2> */}
 
             {showAdminCard && <AddProductCard />}
             {filteredProducts.length === 0 ? (
-                <>
-                    <p className="text-center text-gray-500 text-lg mt-4">
-                        {searchTerm ? `No products found for "${searchTerm}".` : "No products yet."}
-                    </p>
-                </>
+                <p className="text-center text-gray-500 text-lg mt-4">
+                    {searchTerm ? `No products found for "${searchTerm}".` : "No products yet."}
+                </p>
             ) : (
                 <>
                     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
@@ -72,6 +81,7 @@ const Home = () => {
             )}
         </div>
     );
+
 };
 
 export default Home;
