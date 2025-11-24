@@ -2,7 +2,7 @@ import { Router } from "express";
 import { AddProduct, EditProduct, DeleteProduct, CustomerCheckout, GetAllProducts, getOrders } from "../controllers/productManagementController";
 import { AuthenticationMiddleware } from "../middleware/AuthenticationMiddleware";
 import { validateBody } from "../middleware/ValidateBody";
-import { AddProductBody, Cart, DeleteProductBody, EditProductBody } from "../dtos/Products.dto";
+import { AddProductBody, CartAndPoints, DeleteProductBody, EditProductBody } from "../dtos/Products.dto";
 import { upload } from "../middleware/Upload";
 
 const ProductManagementRouter = Router()
@@ -25,7 +25,7 @@ ProductManagementRouter.put(
 
 ProductManagementRouter.delete("/delete", AuthenticationMiddleware(true), validateBody(DeleteProductBody), DeleteProduct)
 
-ProductManagementRouter.post("/checkout", AuthenticationMiddleware(false), validateBody(Cart), CustomerCheckout)
+ProductManagementRouter.post("/checkout", AuthenticationMiddleware(false), validateBody(CartAndPoints), CustomerCheckout)
 ProductManagementRouter.get("/all", GetAllProducts)
 
 ProductManagementRouter.get("/orders", AuthenticationMiddleware(false), getOrders)

@@ -25,6 +25,6 @@ type TEditProductBody = z.infer<typeof EditProductBody>
 type TDeleteProductBody = z.infer<typeof DeleteProductBody>
 type TCartAndPoints = z.infer<typeof CartAndPoints>
 export type { TAddProductBody, TEditProductBody, TDeleteProductBody, TCart, TCartAndPoints }
-export { AddProductBody, EditProductBody, DeleteProductBody }
+export { AddProductBody, EditProductBody, DeleteProductBody , CartAndPoints}
 
 export { Cart }

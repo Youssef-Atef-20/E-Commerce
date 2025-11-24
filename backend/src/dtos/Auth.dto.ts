@@ -8,8 +8,14 @@ const RegisterBody = z.object({
 
 const LoginBody = RegisterBody.omit({ username: true })
 
+const changePasswordBody = z.object({
+    oldPassword: z.string(),
+    newPassword: z.string().min(6)
+})
+
 type TRegisterBody = z.infer<typeof RegisterBody>;
 type TLoginBody = z.infer<typeof LoginBody>;
+type TChangePasswordBody = z.infer<typeof changePasswordBody>;
 
 const SafeUser = z.object({
     username: z.string(),
@@ -19,5 +25,5 @@ const SafeUser = z.object({
 }).strip();
 
 
-export { LoginBody, RegisterBody, SafeUser }
-export type { TRegisterBody, TLoginBody }
+export { LoginBody, RegisterBody, SafeUser , changePasswordBody }
+export type { TRegisterBody, TLoginBody , TChangePasswordBody}

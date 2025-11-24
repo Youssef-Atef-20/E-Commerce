@@ -21,6 +21,19 @@ export async function getMe(req: Request, res: Response) {
     else return res.status(401).json({ message: "Unauthorized" })
 }
 
+export async function changePassword(req: Request<{}, {}, { oldPassword: string, newPassword: string }>, res: Response) {
+    const { oldPassword, newPassword } = req.body;
+    const user = req.user!
+    if (user.password == "UNSET" || await bcrypt.compare(oldPassword, user.password)) {
+        const hashedPassword = await bcrypt.hash(newPassword, 10);
+        user.password = hashedPassword;
+        await user.save();
+        return res.status(200).json({ message: "Changed Password Succesfully !" });
+    } else {
+        return res.status(400).json({ message: "Old Password is incorrect" });
+    }
+}
+
 export async function login(req: Request<{}, {}, TLoginBody>, res: Response) {
     const { email, password } = req.body
     const user = await User.findOne({ email })

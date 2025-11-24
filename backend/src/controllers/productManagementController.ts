@@ -132,11 +132,6 @@ export async function CustomerCheckout(req: Request<{}, {}, TCartAndPoints>, res
             }
         })
 
-        // if he requested for an ammount less than what he got that will be nominated against the actuall full price
-        // if he requested for an ammount more than what he got that will be EXTERMINATED and instead will most likely use all his points or the orders need , the minimum of them
-
-        const USED_POINTS = Math.max(Math.min(req.body.points, user.loyaltyPoints, total * 10), 0)
-
         // dont redirect the user , let them know about the errors first
         if (errors.length) {
             return res.status(400).json({ ok, errors })
@@ -151,6 +146,10 @@ export async function CustomerCheckout(req: Request<{}, {}, TCartAndPoints>, res
         if (!filteredCartData.length) {
             return res.status(400).json({ ok, errors })
         }
+
+        // if he requested for an ammount less than what he got that will be nominated against the actuall full price
+        // if he requested for an ammount more than what he got that will be EXTERMINATED and instead will most likely use all his points or the orders need , the minimum of them
+        const USED_POINTS = Math.max(Math.min(req.body.points, user.loyaltyPoints, total * 10), 0)
 
         const sessionData: Stripe.Checkout.SessionCreateParams = {
             line_items: filteredCartData,
