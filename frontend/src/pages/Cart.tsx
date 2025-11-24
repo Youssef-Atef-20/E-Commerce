@@ -68,6 +68,19 @@ export const Cart = () => {
             });
     };
 
+
+
+
+
+    const handleLoyaltyPoints = () => {
+     
+        const oldPrice = total
+        const newPrice = Math.max(0, total - discount); 
+
+        setDiscountInfo({oldPrice,discount,newPrice,});
+
+    }
+
     return (
         <div className="max-w-7xl max-sm:px-2 mx-auto px-6 py-6 flex flex-col h-full">
             <h1 className="text-3xl font-bold mb-8">Your Cart</h1>

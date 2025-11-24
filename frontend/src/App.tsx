@@ -110,14 +110,7 @@ function App() {
                 <Routes>
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<Home />} />
-                        <Route
-                            path="/wishlist"
-                            element={
-                                <ProtectedRoute>
-                                    <Wishlist />
-                                </ProtectedRoute>
-                            }
-                        />
+                        <Route path="/wishlist" element={<ProtectedRoute> <Wishlist /> </ProtectedRoute>}/>
                         <Route
                             path="/cart"
                             element={
