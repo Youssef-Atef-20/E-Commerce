@@ -24,7 +24,7 @@ const Home = () => {
     const handlePrev = () => setPage(prev => Math.max(1, prev - 1));
     const handleNext = () => setPage(prev => Math.min(totalPages, prev + 1));
 
-    const showAdminCard = user?.isAdminstartor;
+    const showAdminCard = user?.isAdmin;
 
     return (
         <div className="max-w-7xl mx-auto px-6 py-10">
@@ -74,8 +74,6 @@ const Home = () => {
             )}
         </div>
     );
-
-
 };
 
 export default Home;
