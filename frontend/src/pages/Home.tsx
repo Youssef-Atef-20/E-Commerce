@@ -24,45 +24,47 @@ const Home = () => {
     const handlePrev = () => setPage(prev => Math.max(1, prev - 1));
     const handleNext = () => setPage(prev => Math.min(totalPages, prev + 1));
 
-    const showAdminCard = user?.isAdminstartor;
+    const showAdminCard = user?.isAdmin;
 
     return (
-        <div className="max-w-7xl mx-auto px-6 py-6">
-            <h2 className="text-2xl font-semibold mb-6">Featured Products</h2>
+        <div className="max-w-7xl mx-auto px-6 py-10">
 
-            {showAdminCard && <AddProductCard />}
+            {showAdminCard && (
+                <div className="mb-10">
+                    <AddProductCard />
+                </div>
+            )}
+
             {filteredProducts.length === 0 ? (
-                <>
-                    <p className="text-center text-gray-500 text-lg mt-4">
-                        {searchTerm ? `No products found for "${searchTerm}".` : "No products yet."}
-                    </p>
-                </>
+                <p className="text-center text-gray-500 text-lg mt-10">
+                    {searchTerm ? `No products found for "${searchTerm}".` : "No products yet."}
+                </p>
             ) : (
                 <>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-4">
+                    <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                         {visibleProducts.map(product => (
-                            <ProductCard key={product._id || product.name} product={product} />
+                            <ProductCard key={product._id} product={product} />
                         ))}
                     </div>
 
                     {totalPages > 1 && (
-                        <div className="flex justify-center mt-8 gap-3 items-center">
+                        <div className="flex justify-center mt-10 items-center gap-4">
                             <button
                                 onClick={handlePrev}
                                 disabled={page === 1}
-                                className="cursor-pointer px-4 py-2 border rounded-full bg-white disabled:opacity-40 hover:bg-gray-100 shadow-sm"
+                                className="cursor-pointer px-5 py-2.5 bg-white rounded-full shadow-md disabled:opacity-40 hover:shadow-lg hover:bg-gray-50 transition"
                             >
                                 Prev
                             </button>
 
-                            <span className="px-4 py-2 border rounded-full bg-white font-medium shadow-sm">
+                            <span className="px-5 py-2.5 bg-white rounded-full shadow-md font-semibold">
                                 {page} / {totalPages}
                             </span>
 
                             <button
                                 onClick={handleNext}
                                 disabled={page === totalPages}
-                                className="cursor-pointer px-4 py-2 border rounded-full bg-white disabled:opacity-40 hover:bg-gray-100 shadow-sm"
+                                className="cursor-pointer px-5 py-2.5 bg-white rounded-full shadow-md disabled:opacity-40 hover:shadow-lg hover:bg-gray-50 transition"
                             >
                                 Next
                             </button>
