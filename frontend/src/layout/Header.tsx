@@ -19,7 +19,7 @@ const Header = () => {
     }
 
     return (
-        <header className="w-full shadow-sm border-b">
+        <header className="w-full shadow-sm border-b bg-white">
             <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6 flex-wrap max-sm:flex-col-reverse max-sm:px-2">
 
                 <button
