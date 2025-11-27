@@ -8,7 +8,7 @@ const OrdersTab = ({
     onView: (id: string) => void;
 }) => {
     return (
-        <div className="bg-white rounded-2xl">
+        <div className="rounded-2xl">
 
             {!orders.length ? (
                 <p className="text-gray-500 text-center py-6">

@@ -6,7 +6,7 @@ const ProfileTab = ({ user }: { user: any }) => {
     const [openModal, setOpenModal] = useState(false);
 
     return (
-        <div className="bg-white rounded-xl flex flex-col gap-4">
+        <div className="rounded-xl flex flex-col gap-4">
             <h2 className="text-xl font-semibold text-gray-900">Profile</h2>
 
             <div>
