@@ -24,6 +24,8 @@ const ProductPage = () => {
     const [favorited, setFavorited] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
 
+    const [added, setAdded] = useState(false);
+
     useEffect(() => {
         if (product) {
             setFavorited(favorites.includes(product._id));
@@ -37,7 +39,9 @@ const ProductPage = () => {
         if (!auth.user) return navigate("/register");
         if (quantity > 0) {
             dispatch(addProduct({ productId: product._id, quantity }));
-            alert(`${quantity} ${product.name} added to cart`);
+
+            setAdded(true);
+            setTimeout(() => setAdded(false), 1000);
         }
     };
 
@@ -119,10 +123,15 @@ const ProductPage = () => {
                             <button
                                 onClick={handleAdd}
                                 disabled={product.stock === 0}
-                                className={`flex-1 py-3 px-4 rounded-xl font-semibold text-white transition cursor-pointer
-                                    ${product.stock === 0 ? "bg-gray-300 cursor-not-allowed" : "bg-red-500 hover:bg-red-600"}`}
+                                className={`flex-1 py-3 px-4 rounded-xl font-semibold text-white transition-all duration-300 cursor-pointer
+                                    ${product.stock === 0
+                                        ? "bg-gray-300 cursor-not-allowed"
+                                        : added
+                                            ? "bg-green-500"
+                                            : "bg-red-500 hover:bg-red-600"
+                                    }`}
                             >
-                                {product.stock > 0 ? "Add to Cart" : "Out of Stock"}
+                                {added ? "Added!" : product.stock > 0 ? "Add to Cart" : "Out of Stock"}
                             </button>
 
                             <button
