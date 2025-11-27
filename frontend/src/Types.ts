@@ -1,23 +1,21 @@
 type TProduct = {
-    name: string;
-    description: string;
-    price: number;
-    img: string;
-    stock: number;
-    _id: string;
-    colors?: string[];
-    sizes?: string[];
+    name: string,
+    description: string,
+    price: number,
+    img: string,
+    stock: number,
+    _id: string
 }
 
-type TCartEntry = { productId: string; quantity: number }
+type TCartEntry = { productId: string, quantity: number }
 
 type TCart = TCartEntry[]
 
 type TUser = {
-    username: string;
-    email: string;
-    loyaltyPoints: number;
-    isAdmin: boolean;
+    username: string,
+    email: string,
+    loyaltyPoints: number,
+    isAdminstartor: number
 }
 
-export type { TProduct, TCartEntry, TCart, TUser }
+export type { TProduct , TCartEntry , TCart , TUser}
