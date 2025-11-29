@@ -8,9 +8,6 @@ import ChangePasswordModal from "./ChangePasswordModal";
 const ProfileTab = ({ user }: { user: any }) => {
     const [openModal, setOpenModal] = useState(false);
     
-    
-
-
     return (
         <div className="rounded-xl flex flex-col gap-4">
             <h2 className="text-xl font-semibold text-gray-900">Profile</h2>
