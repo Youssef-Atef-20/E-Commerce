@@ -23,6 +23,7 @@ const ProductPage = () => {
     const [quantity, setQuantity] = useState(1);
     const [favorited, setFavorited] = useState(false);
     const [editOpen, setEditOpen] = useState(false);
+    const user = useSelector((state: RootState) => state.auth.user)
 
     const [added, setAdded] = useState(false);
 
@@ -46,6 +47,12 @@ const ProductPage = () => {
     };
 
     const toggleFavorite = () => {
+        
+        if (!user) {
+            navigate("/register")
+            return
+        }
+
         if (!product) return;
         if (favorited)
             dispatch(removeFavorite(product._id));
