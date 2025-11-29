@@ -1,14 +1,14 @@
 import axios from "axios";
-// import env from "./env";
+import env from "./env";
 
-// export const api = axios.create({
-//     baseURL: env.BACKEND_URL + "/api",
-//     withCredentials : true
-// });
+const baseURL =
+    import.meta.env.MODE === "development"
+        ? env.BACKEND_URL + "/api"
+        : "/api";
 
-export const api = axios.create({
-    baseURL: "/api",
-    withCredentials : true
+const api = axios.create({
+    baseURL,
+    withCredentials: true,
 });
 
-export default api
+export default api;
