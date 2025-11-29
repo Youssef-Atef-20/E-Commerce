@@ -100,9 +100,10 @@ export const Cart = () => {
 
                         <input
                             type="number"
+                            placeholder="Enter points to redeem"
                             min={0}
                             max={maxPoints}
-                            value={points}
+                            value={points === 0 ? "" : points}
                             onChange={(e) => {
                                 const v = Number(e.target.value);
                                 if (v <= maxPoints) setPoints(v);
