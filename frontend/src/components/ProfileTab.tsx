@@ -1,9 +1,18 @@
 import { useState } from "react";
 import api from "../Api";
 import ChangePasswordModal from "./ChangePasswordModal";
+import { useNavigate } from "react-router-dom";
+import { notAuth } from "../store/slices/authSlice";
+import { useDispatch } from "react-redux";
+
+
 
 const ProfileTab = ({ user }: { user: any }) => {
     const [openModal, setOpenModal] = useState(false);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
+    
+
 
     return (
         <div className="rounded-xl flex flex-col gap-4">
@@ -29,9 +38,13 @@ const ProfileTab = ({ user }: { user: any }) => {
             </button>
 
             <button
-                onClick={() =>
-                    api.post("/auth/logout").then(() => (location.href = "/"))
-                }
+                onClick={() => {
+                api.post("/auth/logout").then(() => {
+                dispatch(notAuth());    
+                navigate("/", { replace: true });
+    });
+}}
+
                 className="mt-2 bg-red-500 text-white font-semibold rounded-lg px-5 py-3 cursor-pointer"
             >
                 Logout
