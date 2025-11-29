@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setSearch } from "../store/slices/searchSlice";
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import api from "../Api";
 
 const Header = () => {
