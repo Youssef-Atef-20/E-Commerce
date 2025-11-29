@@ -1,9 +1,10 @@
-import { Flame, ShoppingCart, Heart, Search, User2Icon, LogIn } from "lucide-react";
+import { Flame, ShoppingCart, Heart, Search, User2Icon, LogIn, LogOut, UserPlus  } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setSearch } from "../store/slices/searchSlice";
-import { useRef } from "react";
+import { useRef, useState } from "react";
+import api from "../Api";
 
 const Header = () => {
     const authSlice = useSelector((state: RootState) => state.auth);
@@ -76,6 +77,19 @@ const Header = () => {
                             >
                                 <User2Icon className="w-6 h-6" />
                             </button>
+                        ) : (
+                            <button
+                                className="p-2 rounded-full hover:bg-gray-100 hover:text-red-500 cursor-pointer transition"
+                                onClick={() => navigate('/REGISTER')}
+                            >
+                                <UserPlus className="w-6 h-6" />
+                            </button>
+                        )}
+                         {authSlice.user ? (
+                             <button onClick={() => { api.post("/auth/logout").then(() => { window.location.replace("/");  });}}
+                             className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 transition">
+                                <LogOut className="w-5 h-5" />
+                                </button>
                         ) : (
                             <button
                                 className="p-2 rounded-full hover:bg-gray-100 hover:text-red-500 cursor-pointer transition"
