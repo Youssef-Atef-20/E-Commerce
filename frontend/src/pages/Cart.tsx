@@ -113,7 +113,7 @@ export const Cart = () => {
                         />
 
                         <p className="text-sm text-gray-600 mt-1">
-                            Available: {auth.user?.loyaltyPoints.toFixed(2) || 0} pts · Max usable: {maxPoints.toFixed(2)}
+                            Available: {Math.floor(auth.user?.loyaltyPoints || 0) || 0} pts · Max usable: {Math.floor(maxPoints)}
                         </p>
 
                         {points > 0 && (
