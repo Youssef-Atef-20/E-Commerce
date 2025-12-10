@@ -27,7 +27,7 @@ const Header = () => {
                     className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 max-sm:hidden"
                     onClick={() => navigate("/")}
                 >
-                    <img className="w-6 h-6" src="logo.svg" alt="logo"/>
+                    <Flame className="w-6 h-6" />
                     <span>Hot Deals</span>
                 </button>
                 {loadSearch &&
@@ -46,14 +46,6 @@ const Header = () => {
                     </div>
                 }
                 <div className="flex items-center gap-4 max-sm:w-full">
-
-                    <button
-                        className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 sm:hidden"
-                        onClick={() => navigate("/")}
-                    >
-                        <Flame className="w-6 h-6" />
-                        <span>Hot Deals</span>
-                    </button>
 
                     <div className="ml-auto gap-2 flex">
                         <button
