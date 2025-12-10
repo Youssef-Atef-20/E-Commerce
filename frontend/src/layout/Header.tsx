@@ -51,7 +51,7 @@ const Header = () => {
                         className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 sm:hidden"
                         onClick={() => navigate("/")}
                     >
-                        <Flame className="w-6 h-6" />
+                        <img className="w-6 h-6" src="logo.svg" alt="Logo"/>
                         <span>Hot Deals</span>
                     </button>
 
