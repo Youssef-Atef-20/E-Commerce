@@ -72,7 +72,7 @@ const Header = () => {
                             </button>
                         ) : (
                             <button
-                                className="p-2 rounded-full hover:bg-gray-100 hover:text-red-500 cursor-pointer transition"
+                                className="p-2 rounded-full hover:bg-gray-100 hover:text-green-500 cursor-pointer transition"
                                 onClick={() => navigate('/REGISTER')}
                             >
                                 <UserPlus className="w-6 h-6" />
@@ -80,12 +80,12 @@ const Header = () => {
                         )}
                          {authSlice.user ? (
                              <button onClick={() => { api.post("/auth/logout").then(() => { window.location.replace("/");  });}}
-                             className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 transition">
+                             className="flex items-center gap-2 p-2 rounded hover:bg-gray-100 hover:text-red-500 transition">
                                 <LogOut className="w-5 h-5" />
                                 </button>
                         ) : (
                             <button
-                                className="p-2 rounded-full hover:bg-gray-100 hover:text-red-500 cursor-pointer transition"
+                                className="p-2 rounded-full hover:bg-gray-100 hover:text-green-500 cursor-pointer transition"
                                 onClick={() => navigate('/login')}
                             >
                                 <LogIn className="w-6 h-6" />
