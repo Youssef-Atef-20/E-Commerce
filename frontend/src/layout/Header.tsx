@@ -25,10 +25,10 @@ const Header = () => {
             <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6 flex-wrap max-sm:flex-col-reverse max-sm:px-2">
 
                 <button
-                    className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 max-sm:hidden"
+                    className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 max-sm:hidden hover:brightness-50"
                     onClick={() => navigate("/")}
                 >
-                    <img src={logo} alt="Logo" className="w-6 h-6  hover:brightness-50" />
+                    <img src={logo} alt="Logo" className="w-6 h-6" />
                     <span>Hot Deals</span>
                 </button>
                 {loadSearch &&
