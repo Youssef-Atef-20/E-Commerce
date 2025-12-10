@@ -20,7 +20,7 @@ const OrdersTab = ({
                         <OrderCard
                             key={order._id}
                             order={order}
-                            index={orders.length - index} // Show 1-based numbering
+                            index={index + 1} // Show 1-based numbering
                             onView={onView}
                         />
                     ))}

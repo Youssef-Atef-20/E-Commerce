@@ -8,11 +8,7 @@ const OrderCard = ({
     onView: (id: string) => void;
 }) => {
     const statusColor =
-        order.status === "pending"
-            ? "text-yellow-600"
-            : order.status === "canceled"
-            ? "text-red-600"
-            : "text-green-600";
+        order.status === "pending"? "text-yellow-600" : order.status === "canceled"? "text-red-600": "text-green-600";
 
     return (
         <div className="border border-gray-200 rounded-xl p-4 flex justify-between items-center bg-white shadow-sm">
