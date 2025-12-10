@@ -1,10 +1,11 @@
-import { Flame, ShoppingCart, Heart, Search, User2Icon, LogIn, LogOut, UserPlus  } from "lucide-react";
+import {  ShoppingCart, Heart, Search, User2Icon, LogIn, LogOut, UserPlus  } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { useLocation, useNavigate } from "react-router-dom";
 import { setSearch } from "../store/slices/searchSlice";
 import { useRef } from "react";
 import api from "../Api";
+import logo from "../../public/vite.png";
 
 const Header = () => {
     const authSlice = useSelector((state: RootState) => state.auth);
@@ -27,7 +28,7 @@ const Header = () => {
                     className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 max-sm:hidden"
                     onClick={() => navigate("/")}
                 >
-                    <Flame className="w-6 h-6" />
+                    <img src={logo} alt="Logo" className="w-6 h-6" />
                     <span>Hot Deals</span>
                 </button>
                 {loadSearch &&
