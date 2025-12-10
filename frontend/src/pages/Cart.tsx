@@ -105,7 +105,7 @@ export const Cart = () => {
                             max={maxPoints}
                             value={points === 0 ? "" : points}
                             onChange={(e) => {
-                                const v = Number(e.target.value);
+                                const v = Math.floor(Number(e.target.value));
                                 if (v <= maxPoints) setPoints(v);
                                 if (v < 0) setPoints(0);
                             }}
