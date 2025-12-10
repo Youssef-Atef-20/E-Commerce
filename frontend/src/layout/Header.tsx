@@ -28,7 +28,7 @@ const Header = () => {
                     className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 max-sm:hidden"
                     onClick={() => navigate("/")}
                 >
-                    <img src={logo} alt="Logo" className="w-6 h-6  hover:text-red-700" />
+                    <img src={logo} alt="Logo" className="w-6 h-6  hover:brightness-50" />
                     <span>Hot Deals</span>
                 </button>
                 {loadSearch &&
