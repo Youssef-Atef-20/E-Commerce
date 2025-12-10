@@ -22,12 +22,13 @@ const Header = () => {
 
     return (
         <header className="w-full shadow-sm border-b bg-white">
-            <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6 max-sm:px-2">
+            <div className="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between gap-6 flex-wrap max-sm:flex-col max-sm:px-2">
+
                 <button
-                    className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 hover:brightness-50 "
+                    className="flex items-center gap-2 text-red-600 font-semibold text-lg cursor-pointer hover:text-red-700 hover:brightness-50"
                     onClick={() => navigate("/")}
                 >
-                    <img src="/vite.png" alt="Logo" className="w-6 h-6" />
+                    <img src="/vite.png"  alt="Logo" className="w-6 h-6" />
                     <span>Hot Deals</span>
                 </button>
                 {loadSearch &&
@@ -45,9 +46,9 @@ const Header = () => {
                         </div>
                     </div>
                 }
-                <div className="flex items-center gap-4 max-sm:w-full">
+                <div className="flex items-center gap-4 max-sm:w-full ">
 
-                    <div className="ml-auto gap-2 flex">
+                    <div className="ml-auto gap-2 flex max-sm:justify-evenly max-sm:w-full">
                         <button
                             className="p-2 rounded-full hover:bg-gray-100 hover:text-red-500 cursor-pointer transition"
                             onClick={() => navigate('/wishlist')}
