@@ -20,7 +20,8 @@ const ProfileTab = ({ user }: { user: any }) => {
                     <span className="font-medium">Email:</span> {user.email}
                 </p>
                 <p className="text-gray-700">
-                    <span className="font-medium">Loyalty Points:</span> {user.loyaltyPoints.toFixed(2)}
+                    <span className="font-medium">Loyalty Points:</span> {Math.floor(Number(user.loyaltyPoints))}
+
                 </p>
             </div>
 
