@@ -60,7 +60,19 @@ const cartSlice = createSlice({
             state = safe;
             localStorage.setItem("cart", JSON.stringify(state));
             return state;
-        }
+        }, 
+
+
+        updateQuantity(state, action) {
+            const { productId, quantity } = action.payload;
+            const found = state.find(p => p.productId === productId);
+            if (found) {
+                found.quantity = quantity;
+            }
+            localStorage.setItem("cart", JSON.stringify(state));
+            return state;
+        },
+
     },
 });
 
@@ -70,7 +82,9 @@ export const {
     clearCart,
     decQuantity,
     incQuantity,
+    updateQuantity,
     setCart
 } = cartSlice.actions;
+
 
 export default cartSlice.reducer;

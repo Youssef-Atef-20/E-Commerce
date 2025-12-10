@@ -1,6 +1,10 @@
 import { X, Plus, Minus } from "lucide-react";
 import type { TProduct } from "../Types";
 import { useState } from "react";
+import { updateQuantity } from "../store/slices/cartSlice";
+import { useDispatch } from "react-redux";
+
+
 
 export const CartProduct = ({
     product,
@@ -16,13 +20,22 @@ export const CartProduct = ({
     onRemove: (id: string) => void;
 }) => {
     const [editableQty, setEditableQty] = useState(quantity);
+    const dispatch = useDispatch();
+
 
     const handleBlur = () => {
-        let value = Math.max(0, Math.min(product.stock, editableQty));
-        setEditableQty(value);
-        if (value > quantity) onIncrease(product._id);
-        else if (value < quantity) onDecrease(product._id);
-    };
+    const value = Math.max(0, Math.min(product.stock, editableQty));
+    setEditableQty(value);
+
+    if (value !== quantity) {
+        dispatch(updateQuantity({
+            productId: product._id,
+            quantity: value
+        }));
+    }
+};
+
+
 
     const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
         if (e.key === "Enter") {
@@ -47,8 +60,8 @@ export const CartProduct = ({
                     </p>
 
                     <p className="text-red-500 font-medium text-sm mt-1">
-                        ${product.price} × {quantity} = ${(
-                            product.price * quantity
+                        ${product.price} × {editableQty} = ${(
+                            product.price * editableQty
                         ).toFixed(2)}
                     </p>
                 </div>
