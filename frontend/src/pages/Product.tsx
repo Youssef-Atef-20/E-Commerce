@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Minus, Plus, Heart } from "lucide-react";
 import type { RootState } from "../store/store";
@@ -8,7 +8,7 @@ import ProductModal from "../components/ProductModal";
 import { addFavorite, removeFavorite } from "../store/slices/favoritesSlice";
 
 const ProductPage = () => {
-    const navigate = useNavigate();
+    
     const { id } = useParams();
     const dispatch = useDispatch();
     const auth = useSelector((state: RootState) => state.auth);
@@ -45,7 +45,7 @@ const ProductPage = () => {
     };
 
     const toggleFavorite = () => {
-        if (!auth.user) return navigate("/register");
+        
         if (!product) return;
         if (favorited)
             dispatch(removeFavorite(product._id));
