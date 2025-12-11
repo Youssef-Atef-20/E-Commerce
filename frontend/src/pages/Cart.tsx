@@ -4,12 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import type { RootState } from "../store/store";
 import { clearCart, decQuantity, incQuantity, removeProduct, setCart } from "../store/slices/cartSlice";
 import api from "../Api";
+import { useNavigate } from "react-router-dom";
 
 export const Cart = () => {
     const dispatch = useDispatch();
     const cart = useSelector((state: RootState) => state.cart);
     const products = useSelector((state: RootState) => state.products);
     const auth = useSelector((state: RootState) => state.auth);
+    const navigate = useNavigate();
 
     const [loading, setLoading] = useState(false);
     const [points, setPoints] = useState(0);
@@ -41,6 +43,7 @@ export const Cart = () => {
     const finalTotal = Math.max(0, total - discount);
 
     const handleCheckout = () => {
+        if(!auth.user) return navigate("/register");
         if (loading) return;
         setLoading(true);
 

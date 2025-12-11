@@ -62,8 +62,6 @@ function App() {
                 dispatch(auth(res.data.user));
             } catch {
                 dispatch(notAuth());
-                localStorage.setItem("wishlist", JSON.stringify([]));
-                localStorage.setItem("cart", JSON.stringify([]));
             }
         };
 
@@ -118,17 +116,13 @@ function App() {
                         <Route
                             path="/wishlist"
                             element={
-                                <ProtectedRoute>
-                                    <Wishlist />
-                                </ProtectedRoute>
+                                <Wishlist />
                             }
                         />
                         <Route
                             path="/cart"
                             element={
-                                <ProtectedRoute>
-                                    <Cart />
-                                </ProtectedRoute>
+                                <Cart />
                             }
                         />
                         <Route

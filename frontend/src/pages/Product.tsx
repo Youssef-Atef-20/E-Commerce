@@ -37,10 +37,8 @@ const ProductPage = () => {
         return <div className="p-10 text-center text-lg">Product not found</div>;
 
     const handleAdd = () => {
-        if (!auth.user) return navigate("/register");
         if (quantity > 0) {
             dispatch(addProduct({ productId: product._id, quantity }));
-
             setAdded(true);
             setTimeout(() => setAdded(false), 1000);
         }

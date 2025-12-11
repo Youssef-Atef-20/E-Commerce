@@ -8,13 +8,11 @@ import { useNavigate } from "react-router-dom";
 
 export const ProductCard = ({ product }: { product: TProduct }) => {
     const favorites = useSelector((state: RootState) => state.favorites)
-    const auth = useSelector((state: RootState) => state.auth);
     const [favorited, setFavorited] = useState(favorites.includes(product._id));
     const dispatch = useDispatch()
 
     function toggleFavorite(e: React.MouseEvent) {
         e.stopPropagation()
-        if (!auth.user) return navigate("/register");
         if (favorited) {
             dispatch(removeFavorite(product._id))
         } else {
