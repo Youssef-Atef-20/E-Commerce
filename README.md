@@ -116,7 +116,7 @@ GET    /api/users/points     # Get loyalty points
 
  
 
-🏗️ Architecture
+🧱 Project Structure
 
 ```
 
