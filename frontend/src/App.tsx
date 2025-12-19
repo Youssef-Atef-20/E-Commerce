@@ -26,6 +26,7 @@ import { setFavorites } from "./store/slices/favoritesSlice";
 import { setCart } from "./store/slices/cartSlice";
 import { setProducts } from "./store/slices/productsSlice";
 import { setOrders } from "./store/slices/ordersSlice";
+
 const MainLayout = () => (
     <>  
         <Header />
