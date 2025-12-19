@@ -114,17 +114,9 @@ GET    /api/users/points     # Get loyalty points
 
  ```
 
- 
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 🧱 Project Structure
-=======
-🏗️ Architecture
->>>>>>> e2cd3c9 (Create README.md)
-=======
-🧱 Project Structure
->>>>>>> 6bbd8c7 (Rename section 'Architecture' to 'Project Structure')
+
 
 ```
 
