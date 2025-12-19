@@ -26,9 +26,10 @@ import { setFavorites } from "./store/slices/favoritesSlice";
 import { setCart } from "./store/slices/cartSlice";
 import { setProducts } from "./store/slices/productsSlice";
 import { setOrders } from "./store/slices/ordersSlice";
-
+import Snowfall from 'react-snowfall';
 const MainLayout = () => (
     <>  
+     
         <Header />
         <Outlet />
     </>
@@ -110,6 +111,7 @@ function App() {
         
         <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
             <BrowserRouter>
+            <Snowfall color="#82C3D9" />
                 <Routes>
                     <Route element={<MainLayout />}>
                         <Route path="/" element={<LandingPage />} />
