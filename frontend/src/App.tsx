@@ -30,7 +30,7 @@ import Snowfall from "react-snowfall";
 
 const MainLayout = () => (
     <>  
-        <Snowfall color="#82C3D9" />
+       
         <Header />
         <Outlet />
     </>
@@ -109,7 +109,9 @@ function App() {
     }
 
     return (
+        
         <GoogleOAuthProvider clientId={env.GOOGLE_CLIENT_ID}>
+             <Snowfall color="#82C3D9" />
             <BrowserRouter>
                 <Routes>
                     <Route element={<MainLayout />}>
