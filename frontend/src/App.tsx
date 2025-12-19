@@ -26,11 +26,11 @@ import { setFavorites } from "./store/slices/favoritesSlice";
 import { setCart } from "./store/slices/cartSlice";
 import { setProducts } from "./store/slices/productsSlice";
 import { setOrders } from "./store/slices/ordersSlice";
-
+import Snowfall from "react-snowfall";
 
 const MainLayout = () => (
     <>  
-       
+        <Snowfall color="#82C3D9" />
         <Header />
         <Outlet />
     </>
