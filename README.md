@@ -155,12 +155,12 @@ e-commerce-project/
 
 This project was developed by students as part of their learning journey within the Digital Egypt Pioneers Initiative (DEPI).
 
-<<<<<<< HEAD
+
 
 
 It demonstrates practical full-stack development skills including frontend design, backend APIs, authentication, admin management, payment integration, and loyalty system implementation
-=======
-It demonstrates practical full-stack development skills including frontend design, backend APIs, authentication, admin management, payment integration, and loyalty system implementation
+
+
 
 
 📹 Project Walkthrough Video
@@ -168,4 +168,4 @@ It demonstrates practical full-stack development skills including frontend desig
 A complete walkthrough video is provided, explaining all main features of the application, including user functionality, loyalty points system, and the admin panel.
 
 Video Link: https://drive.google.com/file/d/1wvwophglxNH8vtCb_ShBETSzgO09kb7M/view?usp=sharing
->>>>>>> 9857ca5c6a87fed42748bf260ab868817018c4b0
+
