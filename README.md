@@ -114,17 +114,12 @@ GET    /api/users/points     # Get loyalty points
 
  ```
 
-<<<<<<< HEAD
+
 
 🧱 Project Structure
 
 
-=======
- 
 
-🧱 Project Structure
-
->>>>>>> 9857ca5c6a87fed42748bf260ab868817018c4b0
 ```
 
 e-commerce-project/
