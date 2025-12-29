@@ -7,6 +7,7 @@ import { setSearch } from "../store/slices/searchSlice";
 import api from "../Api";
 
 
+
 const Header = () => {
   const authSlice = useSelector((state: RootState) => state.auth);
   const navigate = useNavigate();
