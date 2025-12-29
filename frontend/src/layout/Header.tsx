@@ -99,6 +99,7 @@ const Header = () => {
                 onClick={() => navigate("/login")}
                 className="p-2 rounded-full hover:bg-gray-100 hover:text-green-500 transition"
               >
+                login
                 <LogIn className="w-6 h-6" />
               </button>
             )}
