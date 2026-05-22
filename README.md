@@ -3,7 +3,7 @@ A modern full-stack e-commerce web application developed by students enrolled in
 
 The project delivers a complete online shopping experience with a loyalty points system and an admin panel for product management.
 
-📄 License: Educational Project
+📄 License: [MIT](LICENSE)
 
 ---
 
